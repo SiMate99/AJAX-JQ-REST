@@ -11,3 +11,5 @@ $nev = $adatom["nev"];
 $tel = $adatom["tel"];
 $kep = $adatom["kep"];
 
+$updateString = "id='" . $id . "', nev='" . $nev . "', tel='" . $tel . "', kep='" . $kep . "'";
+$mySql->frissit("telefonkonyvem", $updateString, "ID=".$id);
