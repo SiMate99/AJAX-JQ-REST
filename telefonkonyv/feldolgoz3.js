@@ -3,8 +3,9 @@ $(function(){
     $("#beolvas").on("click", beolvas);
     $("#kuld").on("click", adatKuld);
     $("article").delegate(".torol", "click", adatTorol);
-    $("article").delegate(".szerkeszt", "click", adatModosit);
+    $("article").delegate(".szerkeszt", "click", adatSzerkeszt);
     $("#megse").on("click", adatMegse);
+    $("#modosit").on("click", adatModosit);
     
 });
 
@@ -80,7 +81,7 @@ function adatTorol(){
     });
 }
 
-function adatModosit(){
+function adatSzerkeszt(){
     console.log("Módosít");
     $(".szerkesztes").removeClass("elrejt");
     var index=$(this).attr("id");
@@ -94,4 +95,26 @@ function adatModosit(){
 
 function adatMegse(){
     $(".szerkesztes").addClass("elrejt");
+}
+
+function adatModosit(){
+    var editSzemely = {
+        ID : $("#id2").val(),
+        nev : $("#nev2").val(),
+        tel : $("#tel2").val(),
+        kep : $("#kep2").val()
+    };
+    console.log("Módosit");
+    console.log(editSzemely);
+    $.ajax({
+        type: "PUT",
+        url: "modosit.php",
+        data: editSzemely,
+        success: function(){
+            beolvas();
+        },
+        error:function(){
+            alert("Hiba az adatok módosításakor");
+        }
+    });
 }

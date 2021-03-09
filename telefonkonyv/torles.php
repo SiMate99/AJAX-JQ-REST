@@ -1,7 +1,7 @@
 <?php
 
-require_once './MySqlDB.php';
-if ($_SERVER['request_method'] === 'DELETE') {
+require './MySqlDB.php';
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     $mySql = new MySqlDB();
     $id = $_GET['ID'];
     $mySql->torol("telefonkonyvem", "ID=" . $id);
