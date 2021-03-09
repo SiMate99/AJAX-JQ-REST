@@ -9,10 +9,10 @@ class MySqlDB {
     private $kapcs;
 
     public function __construct() {
-        $this->db_szerver = "web1.szamalk-szalezi.hu";
-        $this->db_felhnev = "c1_tanulo11szf1b";
-        $this->db_jelszo = "_tanulo11szf1b";
-        $this->db_nev = "c1ABtanulo11szf1b";
+        $this->db_szerver = "localhost";//"web1.szamalk-szalezi.hu";
+        $this->db_felhnev = "root";//"c1_tanulo11szf1b";
+        $this->db_jelszo = "";//"_tanulo11szf1b";
+        $this->db_nev = "telefonkonyvem";//"c1ABtanulo11szf1b";
         $this->kapcsolat();
     }
 

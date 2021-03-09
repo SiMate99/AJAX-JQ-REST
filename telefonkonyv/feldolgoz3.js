@@ -3,6 +3,8 @@ $(function(){
     $("#beolvas").on("click", beolvas);
     $("#kuld").on("click", adatKuld);
     $("article").delegate(".torol", "click", adatTorol);
+    $("article").delegate(".szerkeszt", "click", adatModosit);
+    $("#megse").on("click", adatMegse);
     
 });
 
@@ -32,7 +34,7 @@ function kiir(){
         var tel = telefonkonyvem[i].tel;
         var kep = telefonkonyvem[i].kep;
         console.log(nev);
-        var elem = "<div> <h2>"+ nev +"</h2><p>"+ tel +"</p><p>"+ kep +"</p><button id='"+ ID +"' class='torol'>Töröl</button></div>";
+        var elem = "<div> <h2>"+ nev +"</h2><p>"+ tel +"</p><p>"+ kep +"</p><button id='"+ ID +"' class='torol'>Töröl</button> <button id=" + i + " class='szerkeszt'>Szerkeszt</button>\n\</div>";
 
         $("article").append(elem);
     }
@@ -68,12 +70,28 @@ function adatTorol(){
     $.ajax({
         type: "DELETE",
         url: "torles.php?ID=" + ID,
-        success: function(){
+        success: function (){
             console.log("Megtörtént a törlés");
             aktElem.remove();
         },
-        error:function(){
+        error: function (){
             alert("Hiba az adatok törlésekor!");
         }
     });
+}
+
+function adatModosit(){
+    console.log("Módosít");
+    $(".szerkesztes").removeClass("elrejt");
+    var index=$(this).attr("id");
+    console.log(index);
+    
+    $("#id2").val(telefonkonyvem[index].ID);
+    $("#nev2").val(telefonkonyvem[index].nev);
+    $("#tel2").val(telefonkonyvem[index].tel);
+    $("#kep2").val(telefonkonyvem[index].kep);
+}
+
+function adatMegse(){
+    $(".szerkesztes").addClass("elrejt");
 }
